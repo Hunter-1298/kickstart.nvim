@@ -190,18 +190,11 @@ vim.keymap.set('n', '<C-Left>', '<C-w>h', { desc = 'Move focus to the left windo
 vim.keymap.set('n', '<C-Right>', '<C-w>l', { desc = 'Move focus to the right window' })
 vim.keymap.set('n', '<C-Down>', '<C-w>j', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-Up>', '<C-w>k', { desc = 'Move focus to the upper window' })
--- Increase split height
 vim.keymap.set('n', '<A-Up>', ':resize +2<CR>', { desc = 'Increase split height' })
--- Decrease split height
 vim.keymap.set('n', '<A-Down>', ':resize -2<CR>', { desc = 'Decrease split height' })
--- Increase split width
 vim.keymap.set('n', '<A-Right>', ':vertical resize +2<CR>', { desc = 'Increase split width' })
--- Decrease split width
 vim.keymap.set('n', '<A-Left>', ':vertical resize -2<CR>', { desc = 'Decrease split width' })
--- Highlight when yanking (copying) text
---  Try it with `yap` in normal mode
---  See `:help vim.highlight.on_yank()`
--- highlights text when yanking
+vim.api.nvim_set_keymap('n', '<leader>e', ':Neotree toggle<CR>', { noremap = true, silent = true })
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
   group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
@@ -267,6 +260,7 @@ require('lazy').setup({
     size = 10,
     open_mapping = '<c-t>',
   } },
+  -- .config/nvim/init.lua
 
   -- NOTE: Plugins can also be configured to run Lua code when they are loaded.
   --
@@ -282,7 +276,6 @@ require('lazy').setup({
   -- Then, because we use the `config` key, the configuration only runs
   -- after the plugin has been loaded:
   --  config = function() ... end
-
   { -- Useful plugin to show you pending keybinds.
     'folke/which-key.nvim',
     event = 'VimEnter', -- Sets the loading event to 'VimEnter'
@@ -946,15 +939,15 @@ require('lazy').setup({
   -- require 'kickstart.plugins.debug',
   require 'kickstart.plugins.indent_line',
   -- require 'kickstart.plugins.lint',
-  -- require 'kickstart.plugins.autopairs',
-  -- require 'kickstart.plugins.neo-tree',
+  require 'kickstart.plugins.autopairs',
+  require 'kickstart.plugins.neo-tree',
   -- require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    This is the easiest way to modularize your config.
   --
   --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
-  -- { import = 'custom.plugins' },
+  { import = 'custom.plugins' },
   --
   -- For additional information with loading, sourcing and examples see `:help lazy.nvim-🔌-plugin-spec`
   -- Or use telescope!
