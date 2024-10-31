@@ -118,6 +118,8 @@ vim.schedule(function()
   vim.opt.clipboard = 'unnamedplus'
 end)
 
+-- Set default file format to Unix (LF)
+vim.opt.fileformat = 'unix'
 -- Enable break indent
 vim.opt.breakindent = true
 
@@ -254,7 +256,42 @@ require('lazy').setup({
       },
     },
   },
-
+  -- Icons for Neovim plugins
+  {
+    'nvim-tree/nvim-web-devicons',
+  },
+  -- sets lualine for the bottom scrolling bar
+  {
+    'nvim-lualine/lualine.nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    config = function()
+      require('lualine').setup {
+        options = {
+          theme = 'auto', -- Automatically set theme based on colorscheme
+          section_separators = '', -- Customize separators if needed
+          component_separators = '',
+        },
+      }
+    end,
+  },
+  -- cokeline adds buffers to the top of the terminal
+  {
+    'romgrk/barbar.nvim',
+    dependencies = {
+      'lewis6991/gitsigns.nvim', -- OPTIONAL: for git status
+      'nvim-tree/nvim-web-devicons', -- OPTIONAL: for file icons
+    },
+    init = function()
+      vim.g.barbar_auto_setup = false
+    end,
+    opts = {
+      -- lazy.nvim will automatically call setup for you. put your options here, anything missing will use the default:
+      -- animation = true,
+      -- insert_at_start = true,
+      -- …etc.
+    },
+    version = '^1.0.0', -- optional: only update when a new 1.x version is released
+  },
   -- togle terminal with ctrl-t
   { 'akinsho/toggleterm.nvim', event = 'VeryLazy', version = '*', opts = {
     size = 10,
@@ -850,7 +887,7 @@ require('lazy').setup({
       -- Load the colorscheme here.
       -- Like many other themes, this one has different styles, and you could load
       -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      vim.cmd.colorscheme 'tokyonight-night'
+      vim.cmd.colorscheme 'tokyonight-moon'
 
       -- You can configure highlights by doing something like:
       vim.cmd.hi 'Comment gui=none'
@@ -937,7 +974,7 @@ require('lazy').setup({
   -- require 'kickstart.plugins.lint',
   require 'kickstart.plugins.autopairs',
   require 'kickstart.plugins.neo-tree',
-  -- require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
+  require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    This is the easiest way to modularize your config.
