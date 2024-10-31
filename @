@@ -190,14 +190,11 @@ vim.keymap.set('n', '<C-Left>', '<C-w>h', { desc = 'Move focus to the left windo
 vim.keymap.set('n', '<C-Right>', '<C-w>l', { desc = 'Move focus to the right window' })
 vim.keymap.set('n', '<C-Down>', '<C-w>j', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-Up>', '<C-w>k', { desc = 'Move focus to the upper window' })
--- Increase split height
-vim.keymap.set('n', '<A-Up>', ':resize +2<CR>', { desc = 'Increase split height' })
--- Decrease split height
-vim.keymap.set('n', '<A-Down>', ':resize -2<CR>', { desc = 'Decrease split height' })
--- Increase split width
-vim.keymap.set('n', '<A-Right>', ':vertical resize +2<CR>', { desc = 'Increase split width' })
--- Decrease split width
-vim.keymap.set('n', '<A-Left>', ':vertical resize -2<CR>', { desc = 'Decrease split width' })
+vim.keymap.set('n', '<S-Up>', ':resize +2<CR>', { desc = 'Increase split height' })
+vim.keymap.set('n', '<S-Down>', ':resize -2<CR>', { desc = 'Decrease split height' })
+vim.keymap.set('n', '<S-Right>', ':vertical resize +2<CR>', { desc = 'Increase split width' })
+vim.keymap.set('n', '<S-Left>', ':vertical resize -2<CR>', { desc = 'Decrease split width' })
+
 -- Highlight when yanking (copying) text
 --  Try it with `yap` in normal mode
 --  See `:help vim.highlight.on_yank()`
